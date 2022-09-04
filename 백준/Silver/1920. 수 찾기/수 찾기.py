@@ -1,23 +1,16 @@
-# 이진탐색 함수
-def bin(LST, B, START, END):
-    while START <= END:
-        mid = (START + END)//2
-        if LST[mid] == B:
-            return mid
-        elif LST[mid] > B:
-            END = mid -1
-        else:
-            START = mid +1
-    return None
-
+# 입력
 N = int(input())
 NA = input().split()
-NA.sort()
+# 딕셔너리 이용한 try except 구문
+dic = {}
+for a in NA:
+    dic[a] = 1
+
 M = int(input())
 NB = input().split()
+# try except는 안 좋은 거라 한 거 같은데...
 for b in NB:
-    result = bin(NA, b, 0, N-1)
-    if result != None:
-        print(1)
-    else:
+    try:
+        print(dic[b])
+    except KeyError:
         print(0)
