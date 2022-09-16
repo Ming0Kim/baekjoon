@@ -1,24 +1,10 @@
 from collections import deque
 
-n, m, start = map(int, input().split())
-visited = [0]*(n+1)
-arr = [[] for _ in range(n+1)]
-# print(arr)
-
-for _ in range(m):
-    a, b = map(int, input().split())
-    arr[a].append(b)
-    arr[b].append(a)
-# print(arr)
-
-for i in range(n+1):
-    arr[i].sort()
-
 def dfs(start):
     print(start, end=' ')
     visited[start] = 1
     for i in arr[start]:
-        if not visited[i]:
+        if visited[i] == 0:
             dfs(i)
             visited[i] = 1
 
@@ -33,7 +19,20 @@ def bfs(start):
                 q.append(i)
                 visited[i] = 1
 
-dfs(start)
+
+n, m, v = map(int, input().split())
+arr = [[] for _ in range(n+1)]
+
+for _ in range(m):
+    a, b = map(int, input().split())
+    arr[a].append(b)
+    arr[b].append(a)
+
+for i in arr:
+    i.sort()
+
 visited = [0]*(n+1)
+dfs(v)
 print()
-bfs(start)
+visited = [0]*(n+1)
+bfs(v)
