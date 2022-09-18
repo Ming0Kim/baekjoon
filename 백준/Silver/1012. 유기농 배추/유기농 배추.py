@@ -1,39 +1,30 @@
-
 import sys
-sys.setrecursionlimit(10000)
 input = sys.stdin.readline
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
-# 시작 점만 남기고 나머지 1들은 모두 0으로 처리
-def dfs(cabbage, r, c):
-    for i in range(4):
-        nx = r + dx[i]
-        ny = c + dy[i]
-        if (0 <= nx < m) and (0 <= ny < n):
-            if cabbage[ny][nx] == 1:
-                cabbage[ny][nx] = 0
-                dfs(cabbage, nx, ny)
 
+sys.setrecursionlimit(10000)
+
+dr = [-1, 0, 1, 0]  # 상 좌 하 우
+dc = [0, -1, 0, 1]
+
+def dfs(lst, r, c):
+    for i in range(4):
+        nr = r + dr[i]
+        nc = c + dc[i]
+        if 0 <= nr < n and 0 <= nc < m and arr[nr][nc] == 1:
+            arr[nr][nc] = 0
+            dfs(lst, nr, nc)
 
 t = int(input())
-for tc in range(1, t+1):
+for _ in range(t):
     m, n, k = map(int, input().split())
-
-    # 배추밭
-    cabbage = [[0]*m for _ in range(n)]
-    # print(cabbage)
-    for _ in range(k):
-        a, b = map(int, input().split())
-        cabbage[b][a] = 1
-
-    # for r in cabbage:
-    #     print(*r)
-
-    # 남은 1들만 세면됨
+    arr = [[0]*m for i in range(n)]
+    for K in range(k):
+       x, y = map(int, input().split())
+       arr[y][x] = 1
     cnt = 0
-    for r in range(m):
-        for c in range(n):
-            if cabbage[c][r] ==1:
-                dfs(cabbage, r, c)
+    for r in range(n):
+        for c in range(m):
+            if arr[r][c] == 1:
+                dfs(arr, r, c)
                 cnt += 1
     print(cnt)
