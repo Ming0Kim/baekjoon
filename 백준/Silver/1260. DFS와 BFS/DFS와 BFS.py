@@ -1,38 +1,41 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(1000000)
 
-def dfs(start):
-    print(start, end=' ')
-    visited[start] = 1
-    for i in arr[start]:
-        if visited[i] == 0:
-            dfs(i)
+def dfs(n):
+    print(n, end=' ')
+    visited[n] = 1
+    for i in arr[n]:
+        if not visited[i]:
             visited[i] = 1
+            dfs(i)
 
-def bfs(start):
-    q = deque([start])
-    visited[start] = 1
+def bfs(b):
+    q = deque([b])
+    visited[b] = 1
     while q:
-        now = q.popleft()
-        print(now, end=' ')
-        for i in arr[now]:
+        a = q.popleft()
+        print(a, end=' ')
+        for i in arr[a]:
             if not visited[i]:
                 q.append(i)
                 visited[i] = 1
 
 
-n, m, v = map(int, input().split())
-arr = [[] for _ in range(n+1)]
-
-for _ in range(m):
+N, M, V = map(int, input().split())
+arr = [[]*(N+1) for _ in range(N+1)]
+for _ in range(M):
     a, b = map(int, input().split())
     arr[a].append(b)
     arr[b].append(a)
+# print(arr)
 
 for i in arr:
     i.sort()
 
-visited = [0]*(n+1)
-dfs(v)
+visited = [0]*(N+1)
+dfs(V)
 print()
-visited = [0]*(n+1)
-bfs(v)
+visited = [0]*(N+1)
+bfs(V)
