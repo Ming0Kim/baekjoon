@@ -12,13 +12,13 @@
 
 ### 문제 설명
 
-<p style="user-select: auto;">두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.</p>
+<p>두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.</p>
 
 ### 입력 
 
- <p style="user-select: auto;">첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)</p>
+ <p>첫째 줄에 A와 B가 주어진다. (0 < A, B < 10)</p>
 
 ### 출력 
 
- <p style="user-select: auto;">첫째 줄에 A+B를 출력한다.</p>
+ <p>첫째 줄에 A+B를 출력한다.</p>
 
